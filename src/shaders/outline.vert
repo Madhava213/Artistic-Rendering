@@ -39,6 +39,10 @@ void main()
     // Finally, you should project this position into screen coordinates and
     // assign it to the gl_Position variable, which will be passed to the 
     // fragment shader.
-
-    gl_Position = projectionMatrix * viewMatrix * vec4(worldPosition, 1);
+    vec3 viewPosition = (viewMatrix * vec4(worldPosition, 1)).xyz;
+    vec3 viewNormal = (viewMatrix * vec4(worldNormal, 1)).xyz;
+    viewNormal.z = 0.0;
+    normalize(viewNormal);
+    viewPosition += thickness * viewNormal;
+    gl_Position = projectionMatrix * vec4(viewPosition, 1);
 }
