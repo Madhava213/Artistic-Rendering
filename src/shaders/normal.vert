@@ -56,8 +56,9 @@ void main()
     // a result that looks identical to the Phong shader.
     // Then, you can move on to complete the fragment shader.
 
-    vec3 T = normalize(vec3(normalMatrix*vec4(tangent, 1.0)));
-    vec3 N = normalize(vec3(normalMatrix*vec4(normal, 1.0)));
+    vec3 T = normalize(vec3(normalMatrix*vec4(tangent, 0.0)));
+    vec3 N = normalize(vec3(normalMatrix*vec4(normal, 0.0)));
+    T = normalize(T - dot(T, N) * N);
     vec3 B = cross(N, T);
 
     mat3 tbn = transpose(mat3(T,B,N));
