@@ -40,7 +40,7 @@ void main()
     // assign it to the gl_Position variable, which will be passed to the 
     // fragment shader.
     vec3 viewPosition = (viewMatrix * vec4(worldPosition, 1)).xyz;
-    vec3 viewNormal = (viewMatrix * vec4(worldNormal, 1)).xyz;
+    vec3 viewNormal = (viewMatrix * vec4(worldNormal, 0)).xyz;
     viewNormal.z = 0.0;
     normalize(viewNormal);
     viewPosition += thickness * viewNormal;
